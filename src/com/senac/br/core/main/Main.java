@@ -1,6 +1,6 @@
 package com.senac.br.core.main;
 
-import com.senac.br.core.configuration.MatrixUtils;
+import com.senac.br.core.utils.MatrixUtils;
 
 public class Main {
 
