@@ -10,9 +10,9 @@ public class Main {
         String file = "/home/pvmeira/IdeaProjects/ProjetoAlgoritimosIII/resources/example_1.txt";
         MatrixUtils m = new MatrixUtils();
         char[][] meh = m.createMatrixFromTxt(file);
-        char[][] meh11221 = m.createMatrixFromTxt(file);
+        char[][] a22 = m.createMatrixFromTxt(file);
         m.printMatrix("meh", meh);
-        m.printMatrix("meh2", m.createNewMatrixFill0(meh11221));
+        m.printMatrix("meh2", m.createNewMatrixFill0(a22));
 
     }
 }
