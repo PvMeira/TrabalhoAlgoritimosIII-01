@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static java.lang.System.*;
@@ -18,6 +19,8 @@ public class MatrixUtils {
     private static String ERROR_NOTFOUND = "Não encontrou o arquivo!";
     private static String ERROR_CANNOT_FOUND = "Não conseguiu ler o arquivo!";
     private static String ERROR_PARSE = "Erro de parse";
+    private int lineCount;
+    private int columCount;
 
     public MatrixUtils() {
     }
@@ -33,8 +36,8 @@ public class MatrixUtils {
      * @return
      */
     public char[][] createMatrixFromTxt(String path) {
-        int columCount = 0;
-        int lineCount = 0;
+        columCount = 0;
+        lineCount = 0;
         char[][] fileMatrix = new char[lineCount][columCount];
 
         try {
@@ -141,5 +144,33 @@ public class MatrixUtils {
         }
 
         return matrix;
+    }
+
+    public char[][] createNewMatrixFill0(char[][] meh) {
+        int rows = meh.length;
+        int cols = meh[0].length;
+        char[][] meh2 = new char[rows][cols];
+
+        for (char[] chars : meh2) {
+            Arrays.fill(chars, '0');
+        }
+        return meh2;
+
+    }
+
+    public int getLineCount() {
+        return lineCount;
+    }
+
+    public void setLineCount(int lineCount) {
+        this.lineCount = lineCount;
+    }
+
+    public int getColumCount() {
+        return columCount;
+    }
+
+    public void setColumCount(int columCount) {
+        this.columCount = columCount;
     }
 }
