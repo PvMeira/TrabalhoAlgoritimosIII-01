@@ -8,11 +8,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.lang.System.*;
+import static java.lang.System.out;
 
 /**
  * Created by pvmeira on 24/04/17.
  */
+@SuppressWarnings(value = "all")
 public class MatrixUtils {
 
     private static List<Integer> columList = new ArrayList();
@@ -78,6 +79,7 @@ public class MatrixUtils {
      * @param title
      * @param matrix
      */
+
     public void printMatrix(String title, char[][] matrix) {
         int cont = 0;
         out.println(title + "\n");
@@ -146,6 +148,50 @@ public class MatrixUtils {
         return matrix;
     }
 
+    /**
+     * Transform a char[][] to a int[][]
+     *
+     * @param m
+     * @return
+     */
+    public int[][] transformMatrixCharInt(char[][] m) {
+        int[][] result = new int[m.length][m[0].length];
+
+        for (int i = 0; i < result.length; i++) {
+            for (int y = 0; y < result[0].length; y++) {
+                result[i][y] = Character.getNumericValue(m[i][y]);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Print the the int[][] given matrix
+     *
+     * @param title
+     * @param matrix
+     */
+    public void printIntMatrix(String title, int[][] matrix) {
+        int cont = 0;
+        out.println(title + "\n");
+        int colum = columList.get(cont);
+        out.println("Matriz do aquivo " + title + "\n");
+
+        for (int[] matrixTemp : matrix) {
+            StringBuilder presentantionSB = new StringBuilder("|");
+
+            for (int j = 0; j < colum; ++j) {
+                presentantionSB.append(matrixTemp[j]);
+                presentantionSB.append('|');
+            }
+
+            presentantionSB.append("\n");
+            out.print(presentantionSB.toString());
+        }
+
+        out.println();
+    }
+
     public char[][] createNewMatrixFill0(char[][] meh) {
         int rows = meh.length;
         int cols = meh[0].length;
@@ -173,4 +219,6 @@ public class MatrixUtils {
     public void setColumCount(int columCount) {
         this.columCount = columCount;
     }
+
+
 }
