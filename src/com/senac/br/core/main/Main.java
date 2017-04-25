@@ -6,7 +6,7 @@ import com.senac.br.core.utils.MatrixUtils;
 public class Main {
 
     public static void main(String[] args) {
-        String file = "/home/pvmeira/IdeaProjects/ProjetoAlgoritimosIII/resources/example_4.txt";
+        String file = "/home/pvmeira/IdeaProjects/ProjetoAlgoritimosIII/resources/example_3.txt";
         MatrixUtils m = new MatrixUtils();
         IslandFinder i = new IslandFinder();
 

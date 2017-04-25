@@ -174,7 +174,7 @@ public class MatrixUtils {
     public void printIntMatrix(String title, int[][] matrix) {
         int cont = 0;
         out.println(title + "\n");
-        int colum = columList.get(cont);
+        int colum = matrix[0].length;
         out.println("Matriz do aquivo " + title + "\n");
 
         for (int[] matrixTemp : matrix) {
@@ -187,6 +187,7 @@ public class MatrixUtils {
 
             presentantionSB.append("\n");
             out.print(presentantionSB.toString());
+            cont++;
         }
 
         out.println();
