@@ -2,11 +2,15 @@ package com.senac.br.core.configuration;
 
 import com.senac.br.core.utils.MatrixUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by pvmeira on 24/04/17.
  */
 @SuppressWarnings(value = "all")
 public class IslandFinder {
+    private List<String> positions = new ArrayList<>();
 
     /**
      * Return the Total of islands that are present
@@ -37,7 +41,26 @@ public class IslandFinder {
                     n[y][x] = ++counter;
             }
         }
+        this.createTheIndexForTheMatrix(n);
         return counter;
+    }
+
+    private void createTheIndexForTheMatrix(int[][] n) {
+        for (int i = 0; i < n.length; i++) {
+            for (int j = 0; j < n[0].length; j++) {
+                if (n[i][j] == 1) {
+                    this.positions.add("Position [" + i + "][" + j + "]");
+                }
+            }
+        }
+    }
+
+    public void printIndex() {
+
+        for (int i = 0; i < positions.size(); i++) {
+            String s = positions.get(i);
+            System.out.println(s + "\n");
+        }
     }
 
 

@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 public class Main {
 
     public static void main(String[] args) {
-        String file = "/home/pvmeira/IdeaProjects/ProjetoAlgoritimosIII/resources/example_3.txt";
+        String file = "/home/pvmeira/IdeaProjects/ProjetoAlgoritimosIII/resources/example_4.txt";
         MatrixUtils m = new MatrixUtils();
         IslandFinder i = new IslandFinder();
 
@@ -18,6 +18,9 @@ public class Main {
             MatrixCustom matrixCustom = new MatrixCustom(matrix.getLines(), matrix.getColumns());
             m.printTo(System.out, matrix);
             System.out.print("Total de ilhas : " + i.countIslands(matrix.getData(), matrixCustom.getData()));
+
+            System.out.println("Posição");
+            i.printIndex();
         } catch (FileNotFoundException e) {
             System.err.println("Cannot load file: " + args[0]);
         }
