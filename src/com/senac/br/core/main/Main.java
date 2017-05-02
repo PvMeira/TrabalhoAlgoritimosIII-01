@@ -1,7 +1,10 @@
 package com.senac.br.core.main;
 
 import com.senac.br.core.configuration.IslandFinder;
+import com.senac.br.core.entity.MatrixCustom;
 import com.senac.br.core.utils.MatrixUtils;
+
+import java.io.FileNotFoundException;
 
 public class Main {
 
@@ -10,18 +13,23 @@ public class Main {
         MatrixUtils m = new MatrixUtils();
         IslandFinder i = new IslandFinder();
 
-        char[][] matrix1 = m.createMatrixFromTxt(file);
-        char[][] matrix2 = new char[matrix1.length][matrix1[0].length];
-        matrix2 = m.createNewMatrixFill0(matrix2);
+        try {
+            MatrixCustom matrix = m.loadFromFile(file);
+            MatrixCustom matrixCustom = new MatrixCustom(matrix.getLines(), matrix.getColumns());
+            m.printTo(System.out, matrix);
+            System.out.print("Total de ilhas : " + i.countIslands(matrix.getData(), matrixCustom.getData()));
+        } catch (FileNotFoundException e) {
+            System.err.println("Cannot load file: " + args[0]);
+        }
 
-        int [][] meh = m.transformMatrixCharInt(matrix1);
-        int [][] meh1 =m.transformMatrixCharInt(matrix2);
-
-        m.printIntMatrix("sssss",meh);
-        System.out.print("Total de ilhas : "+ i.countIslands(meh,meh1));
-//        char[][] a22 = m.createMatrixFromTxt(file);
-//        m.printMatrix("meh", matrix1);
-//        m.printMatrix("meh2", m.createNewMatrixFill0(a22));
+//        char[][] matrix1 = m.createMatrixFromTxt(file);
+//        char[][] matrix2 = new char[matrix1.length][matrix1[0].length];
+//        matrix2 = m.createNewMatrixFill0(matrix2);
+//
+//        int [][] meh = m.transformMatrixCharInt(matrix1);
+//        int [][] meh1 =m.transformMatrixCharInt(matrix2);
+//
+//        m.printIntMatrix("sssss",meh);
 
     }
 }

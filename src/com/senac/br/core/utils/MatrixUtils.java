@@ -1,12 +1,12 @@
 package com.senac.br.core.utils;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import com.senac.br.core.entity.MatrixCustom;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import static java.lang.System.out;
 
@@ -203,6 +203,47 @@ public class MatrixUtils {
         }
         return meh2;
 
+    }
+
+    /**
+     * From this point, all the code is a example from https://github.com/rafasgj/Algoritmos3
+     * with a alternative solution to operations with a file.txt matrix
+     * @return
+     */
+    public static MatrixCustom loadFromFile(String filename) throws FileNotFoundException {
+        try(Scanner file = new Scanner(new FileReader(filename))) {
+            int colums = file.nextInt();
+            int lines = file.nextInt();
+            MatrixCustom result = new MatrixCustom(lines, colums);
+            file.nextLine(); // a '\n' is left behind.
+            for (int i = 0; i < result.getLines(); i++) {
+                char[] line = file.nextLine().toCharArray();
+                for (int j = 0; j < result.getColumns(); j++) {
+                    result.getData()[i][j] = line[j] - '0';
+                }
+            }
+            return result;
+        }
+    }
+
+    public MatrixCustom findAndReplace(MatrixCustom matrix,int a, int b) {
+        for (int i = 0; i < matrix.getLines(); i++) {
+            for (int j = 0; j < matrix.getColumns(); j++) {
+                int v = matrix.getData()[i][j];
+                matrix.getData()[i][j] = (v == a) ? b : v;
+            }
+        }
+        return matrix;
+    }
+
+    public void printTo(PrintStream out,MatrixCustom result) {
+        for (int i = 0; i < result.getLines(); i++) {
+            out.print("|");
+            for (int j = 0; j < result.getColumns(); j++) {
+                out.print(result.getData()[i][j] + "|");
+            }
+            out.println();
+        }
     }
 
     public int getLineCount() {
