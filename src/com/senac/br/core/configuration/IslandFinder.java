@@ -18,30 +18,42 @@ public class IslandFinder {
      *
      * @return
      */
-    public int countIslands(int[][] m, int[][] n) {
+    public int countIslands(int[][] originalMatrix, int[][] copyMatrix) {
         int counter = 0;
-        for (int y = 0; y < m.length; y++) {
-            for (int x = 0; x < m[0].length; x++) {
-                if (m[y][x] != 1)
+        //Begin the interation of the given matrix
+        for (int y = 0; y < originalMatrix.length; y++) {
+            for (int x = 0; x < originalMatrix[0].length; x++) {
+                //IF the int on the position isent a '1', ignore this position
+                if (originalMatrix[y][x] != 1)
                     continue;
-                if (getValueFrom1(n, n[0].length, n.length, x, y, 0, -1) != 0) {
-                    n[y][x] = getValueFrom1(n, n[0].length, n.length, x, y, 0, -1);
-                    if (x > 0 && getValueFrom1(n, n[0].length, n.length, x, y, -1, 0) != 0) {
-                        if (n[y][x - 1] != n[y][x])
+                //Verify if the position on right this position[x][y] is a islandand also chek if the position on top of the examined one also have a island
+                // , if so, save the value on the copyMatrix
+                //and by enter the if, the count dosent growl
+                if (getValueFrom1(copyMatrix, copyMatrix[0].length, copyMatrix.length, x, y, 0, -1) != 0) {
+                    copyMatrix[y][x] = getValueFrom1(copyMatrix, copyMatrix[0].length, copyMatrix.length, x, y, 0, -1);
+                    if (x > 0 && getValueFrom1(copyMatrix, copyMatrix[0].length, copyMatrix.length, x, y, -1, 0) != 0) {
+                        if (copyMatrix[y][x - 1] != copyMatrix[y][x])
                             counter--;
-                        n[y][x - 1] = n[y][x];
+                        copyMatrix[y][x - 1] = copyMatrix[y][x];
                     }
-                } else if (getValueFrom1(n, n[0].length, n.length, x, y, -1, 0) != 0)
-                    n[y][x] = getValueFrom1(n, n[0].length, n.length, x, y, -1, 0);
-                else if (getValueFrom1(n, n[0].length, n.length, x, y, 1, 0) != 0)
-                    n[y][x] = getValueFrom1(n, n[0].length, n.length, x, y, 1, 0);
-                else if (getValueFrom1(n, n[0].length, n.length, x, y, 0, 1) != 0)
-                    n[y][x] = getValueFrom1(n, n[0].length, n.length, x, y, 0, 1);
+                    //Verify if the position above this position[x][y] is a island, if so, save the value on the copyMatrix
+                    //and by enter the if, the count dosent growl
+                } else if (getValueFrom1(copyMatrix, copyMatrix[0].length, copyMatrix.length, x, y, -1, 0) != 0)
+                    copyMatrix[y][x] = getValueFrom1(copyMatrix, copyMatrix[0].length, copyMatrix.length, x, y, -1, 0);
+                    //Verify if the position on bottom this position[x][y] is a island, if so, save the value on the copyMatrix
+                    //and by enter the if, the count dosent growl
+                else if (getValueFrom1(copyMatrix, copyMatrix[0].length, copyMatrix.length, x, y, 1, 0) != 0)
+                    copyMatrix[y][x] = getValueFrom1(copyMatrix, copyMatrix[0].length, copyMatrix.length, x, y, 1, 0);
+                    //Verify if the position on left this position[x][y] is a island, if so, save the value on the copyMatrix
+                    //and by enter the if, the count dosent growl
+                else if (getValueFrom1(copyMatrix, copyMatrix[0].length, copyMatrix.length, x, y, 0, 1) != 0)
+                    copyMatrix[y][x] = getValueFrom1(copyMatrix, copyMatrix[0].length, copyMatrix.length, x, y, 0, 1);
+                    //Else if the island is isololated, than increment the counter
                 else
-                    n[y][x] = ++counter;
+                    copyMatrix[y][x] = ++counter;
             }
         }
-        this.createTheIndexForTheMatrix(n);
+        this.createTheIndexForTheMatrix(copyMatrix);
         return counter;
     }
 
@@ -63,13 +75,27 @@ public class IslandFinder {
         }
     }
 
-
-    private int getValueFrom1(int[][] m, int sizeX, int sizeY, int x, int y, int diffX, int diffY) {
+    /**
+     * Method that return the value on the given position,
+     * respecting the bounds of the given array
+     *
+     * @param copyMatrix
+     * @param sizeX
+     * @param sizeY
+     * @param x
+     * @param y
+     * @param diffX
+     * @param diffY
+     * @return
+     */
+    private int getValueFrom1(int[][] copyMatrix, int sizeX, int sizeY, int x, int y, int diffX, int diffY) {
         x = x + diffX;
         y = y + diffY;
+        //Verify if the positions x and y, dosent go outofbounds
         if (x < 0 || y < 0 || x >= sizeX || y >= sizeY)
             return 0;
-        return m[y][x];
+        //if not, return the value of the given position
+        return copyMatrix[y][x];
     }
 
 }

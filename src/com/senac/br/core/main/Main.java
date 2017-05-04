@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 public class Main {
 
     public static void main(String[] args) {
-        String file = "/home/pvmeira/IdeaProjects/ProjetoAlgoritimosIII/resources/example_4.txt";
+        String file = "/home/pvmeira/IdeaProjects/ProjetoAlgoritimosIII/resources/example_5.txt";
         MatrixUtils m = new MatrixUtils();
         IslandFinder i = new IslandFinder();
 
