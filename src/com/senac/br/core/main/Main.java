@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 public class Main {
 
     public static void main(String[] args) {
-        String file = "/home/pvmeira/IdeaProjects/ProjetoAlgoritimosIII/resources/example_5.txt";
+        String file = "/home/pvmeira/Documents/projects/Algoritimos-III/TrabalhoAlgoritimosIII-01/resources/example_3.txt";
         MatrixUtils m = new MatrixUtils();
         IslandFinder i = new IslandFinder();
 
@@ -17,22 +17,15 @@ public class Main {
             MatrixCustom matrix = m.loadFromFile(file);
             MatrixCustom matrixCustom = new MatrixCustom(matrix.getLines(), matrix.getColumns());
             m.printTo(System.out, matrix);
-            System.out.print("Total de ilhas : " + i.countIslands(matrix.getData(), matrixCustom.getData()));
+            System.out.print("Total de ilhas : " + i.countIslands(matrix.getData(), matrixCustom.getData()) +"\n");
+            System.out.println("########Posições##########");
 
-            System.out.println("Posição");
-            i.printIndex();
+           i.getPositionIsland(matrix.getData());
         } catch (FileNotFoundException e) {
             System.err.println("Cannot load file: " + args[0]);
         }
 
-//        char[][] matrix1 = m.createMatrixFromTxt(file);
-//        char[][] matrix2 = new char[matrix1.length][matrix1[0].length];
-//        matrix2 = m.createNewMatrixFill0(matrix2);
-//
-//        int [][] meh = m.transformMatrixCharInt(matrix1);
-//        int [][] meh1 =m.transformMatrixCharInt(matrix2);
-//
-//        m.printIntMatrix("sssss",meh);
+
 
     }
 }

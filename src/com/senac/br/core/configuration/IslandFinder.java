@@ -53,8 +53,31 @@ public class IslandFinder {
                     copyMatrix[y][x] = ++counter;
             }
         }
-        this.createTheIndexForTheMatrix(copyMatrix);
+
         return counter;
+    }
+
+    public void getPositionIsland(int[][] n){
+        StringBuilder b = new StringBuilder();
+        for (int i = 0; i < n.length; i++) {
+            for (int j = 0; j < n[i].length; j++) {
+                if(verifyIsland(n[i][j])){
+                    b.append("Coluna :"+i+"  ");
+                    b.append("Linha  :"+j+"  ");
+                    b.append("\n");
+                }
+            }
+        }
+        System.out.println(b.toString());
+    }
+
+    private boolean verifyIsland(int position){
+        if(position == 1){
+            return Boolean.TRUE;
+        }else{
+            return Boolean.FALSE;
+        }
+
     }
 
     private void createTheIndexForTheMatrix(int[][] n) {
