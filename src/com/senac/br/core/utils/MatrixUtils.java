@@ -210,7 +210,7 @@ public class MatrixUtils {
      * with a alternative solution to operations with a file.txt matrix
      * @return
      */
-    public static MatrixCustom loadFromFile(String filename) throws FileNotFoundException {
+    public MatrixCustom loadFromFile(String filename) throws FileNotFoundException {
         try(Scanner file = new Scanner(new FileReader(filename))) {
             int colums = file.nextInt();
             int lines = file.nextInt();

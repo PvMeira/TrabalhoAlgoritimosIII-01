@@ -10,7 +10,8 @@ public class Main {
 
     public static void main(String[] args) {
         //Write Here the location of the file that needs to be read
-        String file = "/home/pvmeira/Documents/projects/Algoritimos-III/TrabalhoAlgoritimosIII-01/resources/example_3.txt";
+    	String separator = System.getProperty("file.separator");
+        String file = "resources"+separator+"example_3.txt";
 
         MatrixUtils m = new MatrixUtils();
         IslandFinder i = new IslandFinder();
