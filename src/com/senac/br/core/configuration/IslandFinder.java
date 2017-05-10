@@ -62,8 +62,8 @@ public class IslandFinder {
         for (int i = 0; i < n.length; i++) {
             for (int j = 0; j < n[i].length; j++) {
                 if(verifyIsland(n[i][j])){
-                    b.append("Coluna :"+i+"  ");
-                    b.append("Linha  :"+j+"  ");
+                    b.append("Coluna :"+(j+1)+"  ");
+                    b.append("Linha  :"+(i+1)+"  ");
                     b.append("\n");
                 }
             }
